@@ -69,6 +69,22 @@
  */
 
 // @lc code=start
+// 100% 96.01%
+class Solution {
+public:
+    int heightChecker(vector<int>& heights) {
+        vector<int> sorted(heights.begin(), heights.end());
+        sort(sorted.begin(), sorted.end());
+        
+        int n=heights.size(), res=0;
+        
+        for(int i=0;i<n;i++){
+            if(heights[i]!=sorted[i]) res++;
+        }
+        
+        return res;
+    }
+};
 // 5.77% 26.14%
 class Solution {
 public:

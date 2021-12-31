@@ -48,6 +48,12 @@
 #
 
 # @lc code=start
+# 16.77% 5.32%
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        return sorted([x*x for x in nums])
+
+# 92.06% 57.15%
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
         nums = [x*x for x in nums]

@@ -64,23 +64,24 @@
 
 // @lc code=start
 class Solution {
-    private int binaryLessThan(int[] arr, int target){
+    private int binaryLTE(int[] arr, int target){
         int l=0, r=arr.length-1;
         while(l<=r){
             int mid = l+(r-l)/2;
-            if(arr[mid] >= target){
+            if(arr[mid] > target){
                 r = mid - 1;
             }else{
                 l = mid + 1;
             }
         }
-        return l - 1;
+        return r;
     }
     
+    // Count how many values are absolutely less than num
     private int countSmaller(int[][] matrix, int num){
         int res = 0;
         for(int[] row: matrix){
-            int i = binaryLessThan(row, num);
+            int i = binaryLTE(row, num);
             if(i<0) break;
             res += i+1;
         }
@@ -90,17 +91,17 @@ class Solution {
     public int kthSmallest(int[][] matrix, int k) {
         int n=matrix.length;
         int l=matrix[0][0], r=matrix[n-1][n-1];
-        // Find leftmost value whose countSmaller>=k, then the value is in the matrix
+        // Find leftmost value whose countSmaller>k-1 (the k-smallest value in the matrix)
         while(l<=r){
             int mid = l+(r-l)/2;
             int cnt = countSmaller(matrix, mid);
-            if(cnt < k){
+            if(cnt <= k-1){
                 l = mid+1;
             }else{
                 r = mid-1;
             }
         }
-        return r;
+        return l;
     }
 }
 // @lc code=end
